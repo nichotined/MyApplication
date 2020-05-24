@@ -17,13 +17,17 @@ class MainActivity : AppCompatActivity(), MainView {
 
         presenter.initListener()
 
-        button.setOnClickListener {
-            presenter.onButtonClick()
+        plusButton.setOnClickListener {
+            presenter.onCalcPlus()
+        }
+
+        minusButton.setOnClickListener {
+            presenter.onCalcMinus()
         }
     }
 
     override fun showResult() {
-        textResult.text = presenter.onCalculation().toString()
+        textResult.text = presenter.result
     }
 
     override fun getTextFirst() {

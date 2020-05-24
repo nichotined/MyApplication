@@ -52,7 +52,7 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/button"
+        app:layout_constraintBottom_toTopOf="@id/llCalcBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -71,12 +71,24 @@
             android:textSize="16sp" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/llCalcBtn"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/calculate"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <Button
+            android:id="@+id/plusButton"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/plus" />
+
+        <Button
+            android:id="@+id/minusButton"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/minus" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

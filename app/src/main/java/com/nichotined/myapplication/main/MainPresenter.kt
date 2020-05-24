@@ -4,9 +4,11 @@ package com.nichotined.myapplication.main
 class MainPresenter(private val mainView: MainView) {
     private var textFirst: CharSequence = "0"
     private var textSecond: CharSequence = "0"
+    var result: String = ""
 
-    fun onButtonClick() {
-        mainView.showResult()
+    fun initListener() {
+        mainView.getTextFirst()
+        mainView.getTextSecond()
     }
 
     fun onTextFirstFilled(s: CharSequence?) {
@@ -17,12 +19,13 @@ class MainPresenter(private val mainView: MainView) {
         textSecond = s!!
     }
 
-    fun initListener() {
-        mainView.getTextFirst()
-        mainView.getTextSecond()
+    fun onCalcPlus() {
+        result = (textFirst.toString().toInt() + textSecond.toString().toInt()).toString()
+        mainView.showResult()
     }
 
-    fun onCalculation(): Int {
-        return textFirst.toString().toInt() + textSecond.toString().toInt()
+    fun onCalcMinus() {
+        result = (textFirst.toString().toInt() - textSecond.toString().toInt()).toString()
+        mainView.showResult()
     }
 }
