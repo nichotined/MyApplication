@@ -7,6 +7,7 @@ class MainPresenter(private val mainView: MainView) {
     var result: String = ""
 
     fun initListener() {
+        mainView.setButtonListener()
         mainView.getTextFirst()
         mainView.getTextSecond()
     }
@@ -19,13 +20,25 @@ class MainPresenter(private val mainView: MainView) {
         textSecond = s!!
     }
 
-    fun onCalcPlus() {
-        result = (textFirst.toString().toInt() + textSecond.toString().toInt()).toString()
-        mainView.showResult()
-    }
+    fun onCalculation(operator: String) {
+        val firstNumber = textFirst.toString().toInt()
+        val secondNumber = textSecond.toString().toInt()
 
-    fun onCalcMinus() {
-        result = (textFirst.toString().toInt() - textSecond.toString().toInt()).toString()
+        when (operator) {
+            "+" -> {
+                result = (firstNumber + secondNumber).toString()
+            }
+            "-" -> {
+                result = (firstNumber - secondNumber).toString()
+            }
+            "*" -> {
+                result = (firstNumber * secondNumber).toString()
+            }
+            "/" -> {
+                if (firstNumber != 0 || secondNumber != 0)
+                    result = (firstNumber / secondNumber).toString()
+            }
+        }
         mainView.showResult()
     }
 }

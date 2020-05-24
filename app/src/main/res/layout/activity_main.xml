@@ -7,33 +7,16 @@
     android:padding="16dp"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textFirstLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:labelFor="@id/textFirst"
-        android:text="@string/app_name"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <EditText
         android:id="@+id/textFirst"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:autofillHints="@string/number_hint"
         android:inputType="phone"
+        android:labelFor="@id/textFirst"
         android:text="@null"
         android:textSize="22sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textFirstLabel" />
-
-    <TextView
-        android:id="@+id/textSecondLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:labelFor="@id/textSecond"
-        android:text="@string/app_name"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -43,14 +26,14 @@
         android:layout_height="wrap_content"
         android:autofillHints="@string/number_hint"
         android:inputType="phone"
-        android:labelFor="@id/textSecondLabel"
+        android:labelFor="@id/textSecond"
         android:text="@null"
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textSecondLabel" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@id/llCalcBtn"
         app:layout_constraintEnd_toEndOf="parent"
@@ -61,14 +44,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/result"
-            android:textSize="16sp" />
+            android:textSize="22sp" />
 
         <TextView
             android:id="@+id/textResult"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
             android:text="@null"
-            android:textSize="16sp" />
+            android:textSize="22sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -90,5 +74,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/minus" />
+
+        <Button
+            android:id="@+id/multiplyButton"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/multiply" />
+
+        <Button
+            android:id="@+id/divideButton"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/divide" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

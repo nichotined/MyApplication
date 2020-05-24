@@ -14,15 +14,24 @@ class MainActivity : AppCompatActivity(), MainView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         presenter.initListener()
+    }
 
+    override fun setButtonListener() {
         plusButton.setOnClickListener {
-            presenter.onCalcPlus()
+            presenter.onCalculation("+")
         }
 
         minusButton.setOnClickListener {
-            presenter.onCalcMinus()
+            presenter.onCalculation("-")
+        }
+
+        multiplyButton.setOnClickListener {
+            presenter.onCalculation("*")
+        }
+
+        divideButton.setOnClickListener {
+            presenter.onCalculation("/")
         }
     }
 
