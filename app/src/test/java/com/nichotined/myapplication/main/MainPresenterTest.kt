@@ -19,7 +19,7 @@ class MainPresenterTest {
         mainPresenter.onTextFirstFilled("100")
         mainPresenter.onTextSecondFilled("100")
 //        When
-        mainPresenter.onCalcPlus()
+        mainPresenter.onCalculation("+")
 //        Then
         Mockito.verify(view).showResult()
     }
@@ -28,9 +28,9 @@ class MainPresenterTest {
     fun givenNumberWhenMinusThenPrintResult() {
 //        Given
         mainPresenter.onTextFirstFilled("100")
-        mainPresenter.onTextSecondFilled("100")
+        mainPresenter.onTextSecondFilled("10")
 //        When
-        mainPresenter.onCalcMinus()
+        mainPresenter.onCalculation("-")
 //        Then
         Mockito.verify(view).showResult()
     }
