@@ -18,7 +18,7 @@ class MainPresenterTest {
     }
 
     @Test
-    fun `givenNumberThenPrintResult`() {
+    fun givenNumberThenPrintResult() {
 //        Given
         mainPresenter.onTextFirstFilled("100")
         mainPresenter.onTextSecondFilled("100")

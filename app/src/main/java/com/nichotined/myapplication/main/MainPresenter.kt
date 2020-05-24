@@ -1,6 +1,5 @@
 package com.nichotined.myapplication.main
 
-import com.nichotined.myapplication.MainActivity
 
 class MainPresenter(private val mainView: MainView) {
     private var textFirst: CharSequence = "0"
