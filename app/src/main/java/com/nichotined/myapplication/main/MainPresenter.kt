@@ -2,43 +2,30 @@ package com.nichotined.myapplication.main
 
 
 class MainPresenter(private val mainView: MainView) {
-    private var textFirst: CharSequence = "0"
-    private var textSecond: CharSequence = "0"
-    var result: String = ""
-
-    fun initListener() {
+    fun onViewInit() {
         mainView.setButtonListener()
-        mainView.getTextFirst()
-        mainView.getTextSecond()
     }
 
-    fun onTextFirstFilled(s: CharSequence?) {
-        textFirst = s!!
-    }
-
-    fun onTextSecondFilled(s: CharSequence?) {
-        textSecond = s!!
-    }
-
-    fun onCalculation(operator: String) {
-        val firstNumber = textFirst.toString().toInt()
-        val secondNumber = textSecond.toString().toInt()
-
+    fun onCalculateClicked(firstNumber: Int, secondNumber: Int, operator: String) {
+        var result = 0
         when (operator) {
             "+" -> {
-                result = (firstNumber + secondNumber).toString()
+                result = firstNumber + secondNumber
             }
             "-" -> {
-                result = (firstNumber - secondNumber).toString()
+                result = firstNumber - secondNumber
             }
             "*" -> {
-                result = (firstNumber * secondNumber).toString()
+                result = firstNumber * secondNumber
             }
             "/" -> {
-                if (firstNumber != 0 || secondNumber != 0)
-                    result = (firstNumber / secondNumber).toString()
+                if (secondNumber != 0) {
+                    result = firstNumber / secondNumber
+                } else {
+                    mainView.showError("Unable to divide by zero")
+                }
             }
         }
-        mainView.showResult()
+        mainView.showResult(result)
     }
 }

@@ -2,8 +2,7 @@ package com.nichotined.myapplication
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
+import android.widget.Toast
 import com.nichotined.myapplication.main.MainPresenter
 import com.nichotined.myapplication.main.MainView
 import kotlinx.android.synthetic.main.activity_main.*
@@ -14,60 +13,51 @@ class MainActivity : AppCompatActivity(), MainView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        presenter.initListener()
+        presenter.onViewInit()
     }
 
     override fun setButtonListener() {
+        val firstNumber = textFirst.text.toString().toInt()
+        val secondNumber = textSecond.text.toString().toInt()
+
         plusButton.setOnClickListener {
-            presenter.onCalculation("+")
+            presenter.onCalculateClicked(
+                operator = "+",
+                firstNumber = firstNumber,
+                secondNumber = secondNumber
+            )
         }
 
         minusButton.setOnClickListener {
-            presenter.onCalculation("-")
+            presenter.onCalculateClicked(
+                operator = "-",
+                firstNumber = firstNumber,
+                secondNumber = secondNumber
+            )
         }
 
         multiplyButton.setOnClickListener {
-            presenter.onCalculation("*")
+            presenter.onCalculateClicked(
+                operator = "*",
+                firstNumber = firstNumber,
+                secondNumber = secondNumber
+            )
         }
 
         divideButton.setOnClickListener {
-            presenter.onCalculation("/")
+            presenter.onCalculateClicked(
+                operator = "/",
+                firstNumber = firstNumber,
+                secondNumber = secondNumber
+            )
         }
     }
 
-    override fun showResult() {
-        textResult.text = presenter.result
+    override fun showResult(result: Int) {
+        textResult.setText(result)
     }
 
-    override fun getTextFirst() {
-        textFirst.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-            }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (s?.length != 0) {
-                    presenter.onTextFirstFilled(s)
-                }
-            }
-        })
-    }
-
-    override fun getTextSecond() {
-        textSecond.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-            }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (s?.length != 0) {
-                    presenter.onTextSecondFilled(s)
-                }
-            }
-        })
+    override fun showError(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }
