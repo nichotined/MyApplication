@@ -1,10 +1,9 @@
-package com.nichotined.myapplication
+package com.nichotined.myapplication.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.nichotined.myapplication.main.MainPresenter
-import com.nichotined.myapplication.main.MainView
+import com.nichotined.myapplication.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), MainView {
@@ -13,14 +12,23 @@ class MainActivity : AppCompatActivity(), MainView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         presenter.onViewInit()
     }
 
     override fun setButtonListener() {
-        val firstNumber = textFirst.text.toString().toInt()
-        val secondNumber = textSecond.text.toString().toInt()
+        var firstNumber = 0
+        var secondNumber = 0
+
+        fun getNumber() {
+            firstNumber =
+                if (textFirst.text.toString() == "") 0 else textFirst.text.toString().toInt()
+            secondNumber =
+                if (textSecond.text.toString() == "") 0 else textSecond.text.toString().toInt()
+        }
 
         plusButton.setOnClickListener {
+            getNumber()
             presenter.onCalculateClicked(
                 operator = "+",
                 firstNumber = firstNumber,
@@ -29,6 +37,7 @@ class MainActivity : AppCompatActivity(), MainView {
         }
 
         minusButton.setOnClickListener {
+            getNumber()
             presenter.onCalculateClicked(
                 operator = "-",
                 firstNumber = firstNumber,
@@ -37,6 +46,7 @@ class MainActivity : AppCompatActivity(), MainView {
         }
 
         multiplyButton.setOnClickListener {
+            getNumber()
             presenter.onCalculateClicked(
                 operator = "*",
                 firstNumber = firstNumber,
@@ -45,6 +55,7 @@ class MainActivity : AppCompatActivity(), MainView {
         }
 
         divideButton.setOnClickListener {
+            getNumber()
             presenter.onCalculateClicked(
                 operator = "/",
                 firstNumber = firstNumber,
@@ -54,7 +65,7 @@ class MainActivity : AppCompatActivity(), MainView {
     }
 
     override fun showResult(result: Int) {
-        textResult.setText(result)
+        textResult.text = result.toString()
     }
 
     override fun showError(message: String) {
