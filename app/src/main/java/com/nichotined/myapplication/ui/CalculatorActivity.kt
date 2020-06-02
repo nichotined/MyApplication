@@ -3,7 +3,7 @@ package com.nichotined.myapplication.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.nichotined.myapplication.R
 import com.nichotined.myapplication.data.Calculator
 import com.nichotined.myapplication.utilities.InjectorUtil
@@ -18,19 +18,22 @@ class CalculatorActivity : AppCompatActivity() {
 
     private fun initializeUi() {
         val factory = InjectorUtil.provideCalculatorViewModelFactory()
-        val viewModel = ViewModelProviders.of(this, factory)
+        val viewModel = ViewModelProvider(this, factory)
             .get(CalculatorViewModel::class.java)
 
         viewModel.getCalculator().observe(this, Observer { results ->
             val stringBuilder = StringBuilder()
             results.forEach { calculator ->
-                stringBuilder.append("${calculator.firstNumber} ${calculator.secondNumber} ${calculator.result}")
+                stringBuilder.append("${calculator.expression} = ${calculator.result}\n")
             }
             textCalculatorResult.text = stringBuilder.toString()
         })
 
         btnCalculator.setOnClickListener {
-            val calculator = Calculator(5.0, 5.0, 10.0)
+            val expression = textCalculatorExpression.text.toString()
+            val result = viewModel.getResult(expression)
+            val calculator = Calculator(expression = expression, result = result)
+
             viewModel.addCalculator(calculator)
         }
     }
